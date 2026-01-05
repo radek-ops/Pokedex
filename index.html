@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Radek Gnych">
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="img/Favicon/Favicon-3-48.png">
+    <link rel="shortcut icon" href="img/Favicon/Favicon-3-48.png" type="image/x-icon" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="style//fonts.css">
+    <script defer src="script.js"></script>
+    <title>Poké-Cardex</title>
+</head>
+
+<body onload="init()">
+    <header>
+        <nav>
+            <div class="logo-and-title">
+                <img src="img/icons8-insignia-3-color/icons8-insignia-3-96.png" alt="Nav-Logo">
+                <h1 class="headline-title">
+                    <span class="part-1">Poké</span>
+                    <span class="divider"></span>
+                    <span class="part-2">Cardex</span>
+                </h1>
+            </div>
+
+            <search>
+                <form>
+                    <input type="text" placeholder="Find your Pokémon">
+                </form>
+            </search>
+        </nav>
+
+    </header>
+    <main>
+
+        <div id="pkCards" class="all-pkcardex-imges"></div>
+        <dialog id="dialogs" onclick="closeDialog()"></dialog>
+
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <span class="footer-index"> &copy Radek Gnych </span>
+
+        </div>
+    </footer>
+
+</body>
+
+</html>
