@@ -57,6 +57,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
+    margin-left: 16px;
+    margin-right: 16px;
 }
 
 
@@ -90,41 +92,72 @@ body {
 }
 
 main {
-
+    width: 100%;
     flex: 1;
-    height: 100vh;
     background-size: cover;
     background-image: url("/img/honyComb2.png");
     object-fit: cover;
     background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+
+.main-content {
+    width: 100%;
+    max-width: 1440px;
+    
+   
+
+}
+
+.all-thumbnails {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+    box-sizing: border-box;
+    margin-left: 16px;
+    margin-right: 16px;
+
 }
 
 
+.singel-thumbnail {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 16px;
+    border-style: solid;
+    border-color: var(--color-white);
+    box-shadow: 5px 5px 8px 0px var(--link_and_img-color);
+    cursor: pointer;
+    color: var(--color-white);
+    background-color: transparent;
+}
 
-.all-pkcardex
-  {
-      max-width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      margin: 0;
-      box-sizing: border-box;
+.thumbnail-images{
 
-  }
+    width: 52px;
+}
 
-
-  .thumbnails
-  {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 16px;
-      box-shadow: 5px 5px 8px 0px var(--link_and_img-color);
-      cursor: pointer;
-  }
-
+.pokemon-dialog {
+ 
+    width: 90%;          
+    max-width: 350px;    
+    height: auto;        
+    max-height: 80vh;     
+    border-radius: 16px;
+    border: 0px;
+    box-shadow: 5px 5px 8px 0px var(--link_and_img-color);
+    background-color: yellow;
+    overflow: hidden;
+}
 
 
 footer {
@@ -144,7 +177,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px;
+    margin: 16px;
     box-sizing: border-box;
 }
 
