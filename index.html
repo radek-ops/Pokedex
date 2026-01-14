@@ -12,14 +12,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="style/styles.css">
-    <link rel="stylesheet" href="style//fonts.css">
-    <script defer src="script.js"></script>
-    <title>Poké-Cardex</title>
+    <link rel="stylesheet" href="style/fonts.css">
+    <link rel="stylesheet" href="style/dialog.css">
+    <script defer src="./scripts/script.js"></script>
+    <script defer src="./scripts/template.js"></script>
+    <title>Card-Pokedex</title>
 </head>
 
-<body onload="init()">
-    <header>
-        <nav>
+<body onload="init()" class="page-body">
+    <header class="page-header">
+        <nav class="page-nav">
             <div class="logo-and-title">
                 <img src="img/icons8-insignia-3-color/icons8-insignia-3-96.png" alt="Nav-Logo">
                 <h1 class="headline-title">
@@ -30,23 +32,29 @@
             </div>
 
             <search>
-                <form>
-                    <input type="text" placeholder="Find your Pokémon">
+                <form onsubmit="searchPokemon(); return false">
+                    <input type="search" id="pokemonSearch" placeholder="Enter Pokémon name here"
+                        pattern="[A-Za-z\s\-]{1,18}" maxlength="18" title="enter pokemon name" required>
+                    <button type="button" class="search-button" onclick="searchPokemon()">Search</button>
                 </form>
             </search>
         </nav>
-
+        <div id="errorBubble" class="">
+            <p id="error" class="speech-bubble"></p>
+        </div>
     </header>
-    <main>
-        <div class="main-content">
+    <main class="page-main">
 
+        <div class="main-content">
             <div id="thumbnail" class="all-thumbnails"></div>
             <dialog class="pokemon-dialog" id="dialog" onclick="closeDialog()"></dialog>
-
+            <div class="load-more-container">
+                <button type="button" class="load-more-button" onclick="loadMorePk()">Load more Pokémons</button>
+            </div>
         </div>
     </main>
 
-    <footer>
+    <footer class="page-footer">
         <div class="footer-content">
             <span class="footer-index"> &copy Radek Gnych </span>
 
@@ -54,5 +62,35 @@
     </footer>
 
 </body>
+
+</html>
+
+
+
+
+
+
+
+<!-- <body>
+    <header id="headline" class="pokemon-dialog-header" onclick="closeDialogOutsite(event)">
+        <nav>
+            <h2 id="imgTitle"></h2>
+            <button class="close-button" type="button" onclick="buttonCloseDialog()">&times;</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="dialog-main-content"></section>
+        <section></section>
+        <section></section>
+    </main>
+
+    <footer class="dialog-arrow" id="dialogFooter">
+        <div id="arrowContainer" class="arrow-container" onclick="closeDialogOutsite(event)">
+            <button id="arrowLeft" class="arrow-button" onclick="clickButtonPrevious()" type="button">&larr;</button>
+            <button id="arrowRight" class="arrow-button" onclick="clickButtonForward()" type="button">&rarr;</button>
+        </div>
+    </footer>
+</body> -->
 
 </html>

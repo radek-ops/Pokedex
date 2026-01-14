@@ -37,7 +37,8 @@ html {
     flex: 1;
 }
 
-header {
+.page-header {
+
     position: relative;
     width: 100%;
     display: flex;
@@ -49,7 +50,7 @@ header {
     z-index: 3;
 }
 
-nav {
+.page-nav {
 
     max-width: 1440px;
     width: 100%;
@@ -59,9 +60,8 @@ nav {
     box-sizing: border-box;
     margin-left: 16px;
     margin-right: 16px;
+
 }
-
-
 
 .logo-and-title {
 
@@ -83,7 +83,51 @@ input {
     margin-right: 16px;
 }
 
-body {
+.search-button {
+    width: 80px;
+    height: 40px;
+    margin-top: 64px;
+    margin-bottom: 64px;
+    white-space: nowrap;
+    border-radius: 16px;
+    border-width: 5px;
+
+}
+
+.speech-bubble {
+    display: none; 
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #ffffff;
+    color: #212529;
+    border: 2px solid #0d6efd;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 16px;
+    width: 320px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: transform 0.1s ease-in-out;
+    z-index: 100;
+}
+
+.speech-bubble.show {
+    display: block; 
+    opacity: 1;
+    transform: translateY(0);
+    animation: errormove 1s 1 forwards
+    }
+
+
+@keyframes errormove {
+    
+  from {top: -50px;}
+  to {top: 120px;}
+  
+}
+
+.page-body {
 
     margin: 0;
     font-family: "Ubuntu", sans-serif;
@@ -91,9 +135,11 @@ body {
 
 }
 
-main {
+.page-main {
+
     width: 100%;
     flex: 1;
+    min-height: 100vh;
     background-size: cover;
     background-image: url("/img/honyComb2.png");
     object-fit: cover;
@@ -102,24 +148,23 @@ main {
     align-items: center;
     justify-content: center;
     padding-top: 64px;
-    padding-bottom: 64px;
+
 }
 
 .main-content {
+
     width: 100%;
     max-width: 1440px;
-    
-   
-
 }
 
 .all-thumbnails {
+
     max-width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+    gap: 32px;
     margin: 0;
     box-sizing: border-box;
     margin-left: 16px;
@@ -127,10 +172,12 @@ main {
 
 }
 
-
 .singel-thumbnail {
+
     width: 180px;
     height: 180px;
+    display: flex;
+    justify-content: space-between;
     object-fit: cover;
     border-radius: 16px;
     border-style: solid;
@@ -138,37 +185,107 @@ main {
     box-shadow: 5px 5px 8px 0px var(--link_and_img-color);
     cursor: pointer;
     color: var(--color-white);
-    background-color: transparent;
+
 }
 
-.thumbnail-images{
+.singel-thumbnail:hover {
 
-    width: 52px;
+    transform: scale(1.1);
+    box-shadow: 0px 0px 20px 1px rgba(151, 21, 21);
+
 }
 
-.pokemon-dialog {
- 
-    width: 90%;          
-    max-width: 350px;    
-    height: auto;        
-    max-height: 80vh;     
+.thumbnail-text-container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 4px;
+
+}
+
+.thumbnail-text {
+
+    margin-top: 24px;
+    font-family: "Ubuntu", sans-serif;
+    margin-bottom: 52px;
+
+}
+
+.pkName {
+
+    font-family: "Ubuntu", sans-serif;
+    font-size: 19px;
+    font-weight: bold;
+    color: var(--color-black);
+
+}
+
+.pkType-name {
+
+    font-family: "Ubuntu", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--color-black);
+
+}
+
+.pk-types {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+}
+
+.thumbnail-images {
+
+    margin-top: 90px;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    margin-right: 8px;
+}
+
+.thumbnail-images:hover {
+
+    transform: scale(1.3);
+    transform: rotate(360deg);
+    transition: 0.7s;
+
+}
+
+.load-more-container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.load-more-button {
+    width: 200px;
+    height: 40px;
+    margin-top: 64px;
+    margin-bottom: 64px;
+    white-space: nowrap;
     border-radius: 16px;
-    border: 0px;
-    box-shadow: 5px 5px 8px 0px var(--link_and_img-color);
-    background-color: yellow;
-    overflow: hidden;
+    border-width: 5px;
+
 }
 
 
-footer {
+.page-footer {
 
     width: 100%;
     display: flex;
     justify-content: center;
     height: 116px;
     background-color: var(--color-black);
-    box-shadow: 0px 0px 20px 1px rgb(151, 21, 21);
+    box-shadow: 0px 5px -20px 5px rgb(151, 21, 21);
 }
+
 
 .footer-content {
 
@@ -179,9 +296,11 @@ footer {
     align-items: center;
     margin: 16px;
     box-sizing: border-box;
+
 }
 
 .footer-index {
+
     font-family: "Ubuntu", sans-serif;
     font-size: 16px;
     color: var(--color-white);
