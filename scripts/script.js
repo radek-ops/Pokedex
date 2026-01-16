@@ -15,12 +15,14 @@ const typeColors = {
     normal: '#A8A878',
 };
 
+
 let BASE_URL = "";
 let currentOffset = 0;
 let limit = 20;
 let currentPkData = [];
 let currentPokemonsDetails = [];
 let pkDetails = [];
+let pokemon = [];
 let currentUrl = 0;
 let pkThumbnail = document.getElementById("thumbnail");
 let thmbnailColor = document.getElementById("thumbnailColor");
@@ -41,94 +43,108 @@ async function loadPkData() {
     //currentPkData.length = 0;
     currentPkData = data.results;
     loadPkDataDetails();
+
 }
 
 async function loadPkDataDetails() {
 
-    let savePkData = currentPkData.map(pkData => fetch(pkData.url).then(pkData => pkData.json()));
+    let savePkData = currentPkData.map(pkData => fetch(pkData.url).then(response => response.json()));
     let result = await Promise.all(savePkData);
+
     currentPokemonsDetails = result;
     console.log(currentPokemonsDetails);
-    for (let i = 0; i < currentPokemonsDetails.length; i++) {
-        showThumbnailPkNamesAndTypes(i);
-    }
 
+    for (let i = 0; i < currentPokemonsDetails.length; i++) {
+
+        pokemon = currentPokemonsDetails[i];
+        console.log(pokemon);
+        
+            showThumbnailPkNamesAndTypes(pokemon);
+    }
 }
 
 function loadMorePk() {
     currentOffset += limit;
     console.log(currentOffset);
     loadPkData();
+
 }
 
-function showThumbnailPkNamesAndTypes(i) {
-    let pkTypeName1 = currentPokemonsDetails[i].types[0].type.name;
+function showThumbnailPkNamesAndTypes(pokemon) {
+    let pkTypeName1 = pokemon.types[0].type.name;
+    console.log(pkTypeName1);
+    
     let pkTypeName2 = "";
 
-    if (currentPokemonsDetails[i].types.length > 1) {
-        pkTypeName2 = currentPokemonsDetails[i].types[1].type.name;
+    if (pokemon.types.length > 1) {
+        pkTypeName2 = pokemon.types[1].type.name;
     }
-    showThumbnailBackgroundcolor(i, pkTypeName1, pkTypeName2);
-
+    showThumbnailBackgroundcolor(pokemon, pkTypeName1, pkTypeName2);
 }
 
-function showThumbnailBackgroundcolor(i, pkTypeName1, pkTypeName2) {
-    let typeName = currentPokemonsDetails[i].types[0].type.name;
+function showThumbnailBackgroundcolor(pokemon, pkTypeName1, pkTypeName2) {
+    let typeName = pokemon.types[0].type.name;
     let bg_Color = typeColors[typeName];
     console.log(bg_Color);
-    pkThumbnail.innerHTML += renderThumbnailsContentTpl(i, pkTypeName1, pkTypeName2, bg_Color);
-
+    pkThumbnail.innerHTML += renderThumbnailsContentTpl(pokemon, pkTypeName1, pkTypeName2, bg_Color);
+    pkTypeName2Style(pokemon);
 }
 
+function pkTypeName2Style(pokemon) {
 
-
+    let pkTypeName2Style = document.getElementById("typeSlot2" + pokemon.id);
+    if (pokemon.types.length === 1) {
+        pkTypeName2Style.classList.add("unset-pkTypeName2Style-bg");
+    }
+}
 
 function searchPokemon() {
-
     let inputPkName = document.getElementById("pokemonSearch");
 
+         
     for (let i = 0; i < currentPokemonsDetails.length; i++) {
-
-        if (currentPokemonsDetails[i].name === inputPkName.value.toLowerCase()) {
-            showPkDialog(i)
-        } else {
+         
+        
+        if (pokemon.name === inputPkName.value.toLowerCase()) {
+                                  
+            showPkDialog(pokemon.name);
+            return;
+        }
+        else {
             showErrorSpeechBubble();
-
         }
     }
 }
 
-
-
 function showErrorSpeechBubble() {
     const error = document.getElementById("error");
-          error.innerText = "Pokemon not found, please enter a valid name!";
-          error.classList.add("show");
+    error.innerText = "Pokemon not found, please enter a valid name!";
+    error.classList.add("show");
 
-    
     setTimeout(() => {
         error.classList.remove("show");
     }, 3000);
 }
 
+function showPkDialog(pokemon) {
 
-function showPkDialog(currentThumbnail, i) {
+    console.log(pokemon);
+    
     pkDialog.showModal();
-    dialogHtmlTpl(currentThumbnail, i)
+    dialogHtmlTpl(pokemon)
 }
 
-function closeDialog() {
+function closeButtonDialog() {
     pkDialog.close();
 
 }
 
-//function closeDialogOutsite(event) {
-//event.stopPropagation();
-//}
-
+function closeDialogOutsite(event) {
+    event.stopPropagation();
+}
 
 function dialogHtmlTpl() {
-    return `
+    return /* html */`<div class="dialog-body" onclick="closeDialogOutsite(event)">
               <header id="headline" class="dialog-header" onclick="closeDialogOutsite(event)">
                   <nav class="nav-dialog">
                     <h2 class="headline-title-dialog">
@@ -136,21 +152,23 @@ function dialogHtmlTpl() {
                     <span class="divider-dialog"></span>
                     <span class="part-2-dialog">Pokedex</span>
                     </h2>
-                      <button class="close-button-dialog" type="button" 
+                      <button class="close-button-dialog" onclick="closeButtonDialog()" type="button" 
                       onclick="buttonCloseDialog()">&times;</button>
                   </nav>
               </header>
 
-              <main class="main-dialog">
+              <main class="main-dialog" onclick="closeDialogOutsite(event)">
               <h2 id="pkName" class="h2-dialog">Name</h2>
                   <section class="section-dialog"></section>
        
               </main>
 
-              <footer class="footer-dialog" id="dialogFooter">
+              <footer class="footer-dialog" id="dialogFooter" onclick="closeDialogOutsite(event)">
                   <div id="arrowContainer" class="arrow-container" onclick="closeDialogOutsite(event)">
                       <button id="arrowLeft" class="arrow-button" onclick="clickButtonPrevious()" type="button">&#11013</button>
                       <button id="arrowRight" class="arrow-button" onclick="clickButtonForward()" type="button">&#10145</button>
                   </div>
-              </footer>`;
+              </footer>
+              </div>`;
 }
+
