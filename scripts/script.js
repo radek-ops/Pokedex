@@ -15,19 +15,16 @@ const typeColors = {
     normal: '#A8A878',
 };
 
-
 let BASE_URL = "";
 let currentOffset = 0;
 let limit = 20;
 let currentPkData = [];
 let currentPokemonsDetails = [];
 let pkDetails = [];
-let pokemon = [];
 let currentUrl = 0;
 let pkThumbnail = document.getElementById("thumbnail");
 let thmbnailColor = document.getElementById("thumbnailColor");
 let pkDialog = document.getElementById("dialog");
-pkDialog.innerHTML = dialogHtmlTpl();
 
 
 function init() {
@@ -40,7 +37,6 @@ async function loadPkData() {
     let response = await fetch(BASE_URL, { method: "GET" });
     let data = await response.json();
     console.log(data);
-    //currentPkData.length = 0;
     currentPkData = data.results;
     loadPkDataDetails();
 
@@ -55,11 +51,10 @@ async function loadPkDataDetails() {
     console.log(currentPokemonsDetails);
 
     for (let i = 0; i < currentPokemonsDetails.length; i++) {
-
-        pokemon = currentPokemonsDetails[i];
+       let  pokemon = currentPokemonsDetails[i];
         console.log(pokemon);
-        
-            showThumbnailPkNamesAndTypes(pokemon);
+
+        showThumbnailPkNamesAndTypes(pokemon);
     }
 }
 
@@ -67,15 +62,11 @@ function loadMorePk() {
     currentOffset += limit;
     console.log(currentOffset);
     loadPkData();
-
 }
 
 function showThumbnailPkNamesAndTypes(pokemon) {
     let pkTypeName1 = pokemon.types[0].type.name;
-    console.log(pkTypeName1);
-    
     let pkTypeName2 = "";
-
     if (pokemon.types.length > 1) {
         pkTypeName2 = pokemon.types[1].type.name;
     }
@@ -91,7 +82,6 @@ function showThumbnailBackgroundcolor(pokemon, pkTypeName1, pkTypeName2) {
 }
 
 function pkTypeName2Style(pokemon) {
-
     let pkTypeName2Style = document.getElementById("typeSlot2" + pokemon.id);
     if (pokemon.types.length === 1) {
         pkTypeName2Style.classList.add("unset-pkTypeName2Style-bg");
@@ -100,20 +90,20 @@ function pkTypeName2Style(pokemon) {
 
 function searchPokemon() {
     let inputPkName = document.getElementById("pokemonSearch");
+    let wantedName = inputPkName.value.toLowerCase();
+    let pkFound = false;
 
-         
     for (let i = 0; i < currentPokemonsDetails.length; i++) {
-         
-        
-        if (pokemon.name === inputPkName.value.toLowerCase()) {
-                                  
-            showPkDialog(pokemon.name);
-            return;
-        }
-        else {
-            showErrorSpeechBubble();
+         let  pokemon = currentPokemonsDetails[i];
+        if (pokemon.name === wantedName) {
+            pkFound = true;
+            showPkDialog();
         }
     }
+    if (!pkFound) {
+        showErrorSpeechBubble();
+    }
+
 }
 
 function showErrorSpeechBubble() {
@@ -126,49 +116,29 @@ function showErrorSpeechBubble() {
     }, 3000);
 }
 
-function showPkDialog(pokemon) {
+function showPkDialog( pkTypeName1, pkTypeName2 ) {
 
-    console.log(pokemon);
-    
-    pkDialog.showModal();
-    dialogHtmlTpl(pokemon)
-}
+ for (let i = 0; i < currentPokemonsDetails.length; i++) {
+         let  pokemon = currentPokemonsDetails[i];
+         let  pokemonId = pokemon;
+
+
+             pkDialog.innerHTML =  dialogHtmlTpl(pokemonId, pokemon, pkTypeName1, pkTypeName2 );
+               pkDialog.showModal();
+     }
+
+
+
+    }
+
+
+
 
 function closeButtonDialog() {
     pkDialog.close();
-
 }
 
 function closeDialogOutsite(event) {
     event.stopPropagation();
-}
-
-function dialogHtmlTpl() {
-    return /* html */`<div class="dialog-body" onclick="closeDialogOutsite(event)">
-              <header id="headline" class="dialog-header" onclick="closeDialogOutsite(event)">
-                  <nav class="nav-dialog">
-                    <h2 class="headline-title-dialog">
-                    <span class="part-1-dialog">Card</span>
-                    <span class="divider-dialog"></span>
-                    <span class="part-2-dialog">Pokedex</span>
-                    </h2>
-                      <button class="close-button-dialog" onclick="closeButtonDialog()" type="button" 
-                      onclick="buttonCloseDialog()">&times;</button>
-                  </nav>
-              </header>
-
-              <main class="main-dialog" onclick="closeDialogOutsite(event)">
-              <h2 id="pkName" class="h2-dialog">Name</h2>
-                  <section class="section-dialog"></section>
-       
-              </main>
-
-              <footer class="footer-dialog" id="dialogFooter" onclick="closeDialogOutsite(event)">
-                  <div id="arrowContainer" class="arrow-container" onclick="closeDialogOutsite(event)">
-                      <button id="arrowLeft" class="arrow-button" onclick="clickButtonPrevious()" type="button">&#11013</button>
-                      <button id="arrowRight" class="arrow-button" onclick="clickButtonForward()" type="button">&#10145</button>
-                  </div>
-              </footer>
-              </div>`;
 }
 
