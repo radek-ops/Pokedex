@@ -21,9 +21,11 @@ let limit = 20;
 let currentPkData = [];
 let currentPokemonsDetails = [];
 let pkDetails = [];
+let pokemon;
 let currentUrl = 0;
 let pkThumbnail = document.getElementById("thumbnail");
-let thmbnailColor = document.getElementById("thumbnailColor");
+let thumbnailBackgroundcolor = document.getElementById("thumbnailBackgroundcolor");
+let dialoglBackgroundcolor = document.getElementById("dialoglBackgroundcolor")
 let pkDialog = document.getElementById("dialog");
 
 
@@ -36,23 +38,21 @@ async function loadPkData() {
 
     let response = await fetch(BASE_URL, { method: "GET" });
     let data = await response.json();
-    console.log(data);
     currentPkData = data.results;
     loadPkDataDetails();
 
 }
 
 async function loadPkDataDetails() {
-
     let savePkData = currentPkData.map(pkData => fetch(pkData.url).then(response => response.json()));
     let result = await Promise.all(savePkData);
 
-    currentPokemonsDetails = result;
+    currentPokemonsDetails.push(...result);
     console.log(currentPokemonsDetails);
 
-    for (let i = 0; i < currentPokemonsDetails.length; i++) {
-       let  pokemon = currentPokemonsDetails[i];
-        console.log(pokemon);
+    for (let i = 0; i < result.length; i++) {
+        const pokemon = result[i];
+
 
         showThumbnailPkNamesAndTypes(pokemon);
     }
@@ -78,10 +78,10 @@ function showThumbnailBackgroundcolor(pokemon, pkTypeName1, pkTypeName2) {
     let bg_Color = typeColors[typeName];
     console.log(bg_Color);
     pkThumbnail.innerHTML += renderThumbnailsContentTpl(pokemon, pkTypeName1, pkTypeName2, bg_Color);
-    pkTypeName2Style(pokemon);
+    pkTypeName2StyleThumbnail(pokemon);
 }
 
-function pkTypeName2Style(pokemon) {
+function pkTypeName2StyleThumbnail(pokemon) {
     let pkTypeName2Style = document.getElementById("typeSlot2" + pokemon.id);
     if (pokemon.types.length === 1) {
         pkTypeName2Style.classList.add("unset-pkTypeName2Style-bg");
@@ -89,53 +89,102 @@ function pkTypeName2Style(pokemon) {
 }
 
 function searchPokemon() {
-    let inputPkName = document.getElementById("pokemonSearch");
+    let inputPkName = document.getElementById("userInput");
     let wantedName = inputPkName.value.toLowerCase();
     let pkFound = false;
 
     for (let i = 0; i < currentPokemonsDetails.length; i++) {
-         let  pokemon = currentPokemonsDetails[i];
+        pokemon = currentPokemonsDetails[i];
         if (pokemon.name === wantedName) {
             pkFound = true;
-            showPkDialog();
+            let foundPkId = pokemon.id;
+            let typeName = pokemon.types[0].type.name;
+            bg_Color = typeColors[typeName];
+            let pkTypeName1 = pokemon.types[0].type.name;
+            let pkTypeName2 = "";
+            if (pokemon.types.length > 1) {
+                pkTypeName2 = pokemon.types[1].type.name;
+            }
+            showPkDialog(foundPkId, pkTypeName1, pkTypeName2, bg_Color);
         }
     }
     if (!pkFound) {
         showErrorSpeechBubble();
     }
-
 }
 
 function showErrorSpeechBubble() {
     const error = document.getElementById("error");
-    error.innerText = "Pokemon not found, please enter a valid name!";
+    error.innerText = "Not found,please enter a valid name or load more Pokémons";
     error.classList.add("show");
 
     setTimeout(() => {
         error.classList.remove("show");
-    }, 3000);
+    }, 4000);
 }
 
-function showPkDialog( pkTypeName1, pkTypeName2 ) {
-
- for (let i = 0; i < currentPokemonsDetails.length; i++) {
-         let  pokemon = currentPokemonsDetails[i];
-         let  pokemonId = pokemon;
-
-
-             pkDialog.innerHTML =  dialogHtmlTpl(pokemonId, pokemon, pkTypeName1, pkTypeName2 );
-               pkDialog.showModal();
-     }
-
-
-
+function showPkDialog(pokemonId, pkTypeName1, pkTypeName2, bg_Color) {
+    for (let i = 0; i < currentPokemonsDetails.length; i++) {
+        pokemon = currentPokemonsDetails[i];
+        if (pokemon.id == pokemonId) {
+            pkDialog.showModal();
+            pkDialog.innerHTML = dialogHtmlTpl(pokemonId, pkTypeName1, pkTypeName2, bg_Color);
+            pkTypeName2StyleDialog(pokemonId)
+            break;
+        }
     }
 
+}
 
-
+function pkTypeName2StyleDialog(pokemonId) {
+    let pkTypeName2Style = document.getElementById("dialogTypeSlot2" + pokemonId);
+    if (pokemon.types.length === 1) {
+        pkTypeName2Style.classList.add("unset-pkTypeName2Style-bg");
+    }
+}
 
 function closeButtonDialog() {
     pkDialog.close();
+}
+
+function clickButtonNext(pokemonId, pkTypeName1, pkTypeName2, bg_Color) {
+    let nextPkId = Number(pokemonId) + 1;
+
+    for (let i = 0; i < currentPokemonsDetails.length; i++) {
+        pokemon = currentPokemonsDetails[i];
+        if (pokemon.id == nextPkId) {
+            let typeName = pokemon.types[0].type.name;
+            bg_Color = typeColors[typeName];
+            pkTypeName1 = pokemon.types[0].type.name;
+            pkTypeName2 = "";
+            if (pokemon.types.length > 1) {
+                pkTypeName2 = pokemon.types[1].type.name;
+            }
+            showPkDialog(nextPkId, pkTypeName1, pkTypeName2, bg_Color);
+            pkTypeName2StyleDialog(nextPkId);
+            break;
+        }
+    }
+}
+
+function clickButtonPrevious(pokemonId, pkTypeName1, pkTypeName2, bg_Color) {
+    let nextPkId = Number(pokemonId) - 1;
+
+    for (let i = 0; i < currentPokemonsDetails.length; i++) {
+        pokemon = currentPokemonsDetails[i];
+        if (pokemon.id == nextPkId) {
+            let typeName = pokemon.types[0].type.name;
+            bg_Color = typeColors[typeName];
+            pkTypeName1 = pokemon.types[0].type.name;
+            pkTypeName2 = "";
+            if (pokemon.types.length > 1) {
+                pkTypeName2 = pokemon.types[1].type.name;
+            }
+            showPkDialog(nextPkId, pkTypeName1, pkTypeName2, bg_Color);
+            pkTypeName2StyleDialog(nextPkId);
+            break;
+        }
+    }
 }
 
 function closeDialogOutsite(event) {
