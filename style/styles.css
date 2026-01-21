@@ -201,7 +201,7 @@ input {
 
 }
 
-.thumbnail-text-container {
+.thumbnail-name-container {
 
     display: flex;
     justify-content: center;
@@ -220,7 +220,7 @@ input {
     margin-bottom: 16px;
 }
 
-.thumbnail-text {
+.thumbnail-name {
 
     margin-top: 24px;
     font-family: "Ubuntu", sans-serif;
@@ -231,17 +231,8 @@ input {
 .pkName {
 
     font-family: "Ubuntu", sans-serif;
-    font-size: 19px;
+    font-size: 22px;
     font-weight: bold;
-    color: var(--color-black);
-
-}
-
-.pkType-name {
-
-    font-family: "Ubuntu", sans-serif;
-    font-size: 18px;
-    font-weight: 400;
     color: var(--color-black);
 
 }

@@ -40,9 +40,7 @@ async function loadPkData() {
     let data = await response.json();
     currentPkData = data.results;
     console.log(currentPkData);
-    
     loadPkDataDetails();
-
 }
 
 async function loadPkDataDetails() {
@@ -140,7 +138,7 @@ function showPkDialog(pokemonId) {
 }
 
 function pkTypeName2StyleDialog(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) {
-   
+
     pkDialog.innerHTML = dialogHtmlTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color);
 
     if (thisPokemon.types.length === 1) {
@@ -154,7 +152,7 @@ function pkTypeName2StyleDialog(thisPokemon, pkTypeName1, pkTypeName2, bg_Color)
 
 function clickButtonNext(thisPokemonId) {
     let nextPkId = Number(thisPokemonId) + 1;
-        let nextPokemon = pokemonsCache[nextPkId];
+    let nextPokemon = pokemonsCache[nextPkId];
     if (nextPokemon) {
         let typeName = nextPokemon.types[0].type.name;
         let bg_Color = typeColors[typeName];
@@ -164,14 +162,15 @@ function clickButtonNext(thisPokemonId) {
             pkTypeName2 = nextPokemon.types[1].type.name;
         }
         pkTypeName2StyleDialog(nextPokemon, pkTypeName1, pkTypeName2, bg_Color);
-                
+          
+           
+        
     }
-  
 }
 
 function clickButtonPrevious(thisPokemonId) {
-   let nextPkId = Number(thisPokemonId) - 1;
-        let previousPokemon = pokemonsCache[nextPkId];
+    let nextPkId = Number(thisPokemonId) - 1;
+    let previousPokemon = pokemonsCache[nextPkId];
     if (previousPokemon) {
         let typeName = previousPokemon.types[0].type.name;
         let bg_Color = typeColors[typeName];
@@ -181,10 +180,9 @@ function clickButtonPrevious(thisPokemonId) {
             pkTypeName2 = previousPokemon.types[1].type.name;
         }
         pkTypeName2StyleDialog(previousPokemon, pkTypeName1, pkTypeName2, bg_Color);
-             
+
     }
 }
-
 
 function closeButtonDialog() {
     pkDialog.close();
