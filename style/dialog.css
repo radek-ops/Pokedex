@@ -128,7 +128,7 @@
     object-fit: cover;
     border-radius: 16px 16px 0 0;
     box-shadow: 5px 5px 8px 0px var(--link_and_img-color);
-    
+
 }
 
 .dialog-name {
@@ -151,9 +151,10 @@
 .dialog-images {
     width: 200px;
     height: 200px;
-    
+
 }
-.dialog-img-container{
+
+.dialog-img-container {
 
     display: flex;
     align-items: center;
@@ -176,7 +177,8 @@
     justify-content: center;
     box-sizing: border-box;
     flex: 1;
-    gap: 8px;;
+    gap: 8px;
+    ;
 
 }
 
@@ -206,7 +208,7 @@
     font-weight: 400;
 }
 
-.dialog-typeNames-img{
+.dialog-typeNames-img {
 
     display: flex;
     align-items: center;
@@ -214,24 +216,37 @@
     margin-bottom: 16px;
 }
 
-.lower-section-dialog{
-display: flex;
-justify-content: center;
-align-items: center;
+.lower-section-dialog {
+    display: flex;
+    flex-direction: column;
 
+}
+
+.lower-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 24px;
 
 
 }
 
-.lower-container{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 24px;
-  margin-left: 8px;
-  margin-right: 8px;
-  
+.total-content {
+    margin-top: 16px;
+    
+    
+}
+
+.ul-about-lists{
+
+    list-style: none;
+    padding: 8px;
+}
+
+li  {
+
+    margin-bottom: 8px;
 }
 
 .footer-dialog {

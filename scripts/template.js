@@ -55,15 +55,22 @@ function   dialogHtmlTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color){
                         alt="Image${thisPokemon.name}">
                 </div>
                 <section class="lower-section-dialog">
-                 <div class="lower-container">
-                  <button><span>About</span></button>
-                  <button><span>State</span></button>
-                  <button><span>Evolition</span></button>
-                  <button><span>Moves</span></button>
-                                 
-                 </div>
+                  <div class="lower-container">
+                   <button><span>About</span></button>
+                   <button><span>States</span></button>
+                   <button><span>Evolution</span></button>
+                   <button><span>Moves</span></button>
+                  </div>
+                     <div class=total-content>
+                        <ul class=ul-about-lists>
+                       <li id="about"     class="about" ></li>
+                       <li id="states"    class="states" ></li>
+                       <li id="evolution" class="evolution" ></li>
+                       <li id="moves"     class="moves" ></li>
+                       </ul>
+                     </div>
                 </section>
-             
+              
            </div>
       </section>
     </main>

@@ -16,6 +16,7 @@ const typeColors = {
 };
 
 let BASE_URL = "";
+let SECONDARY_URL = "";
 let currentOffset = 0;
 let limit = 20;
 let currentPkData = [];
@@ -27,7 +28,6 @@ let pkThumbnail = document.getElementById("thumbnail");
 let thumbnailBackgroundcolor = document.getElementById("thumbnailBackgroundcolor");
 let dialoglBackgroundcolor = document.getElementById("dialoglBackgroundcolor")
 let pkDialog = document.getElementById("dialog");
-
 
 function init() {
     loadPkData();
@@ -46,11 +46,21 @@ async function loadPkData() {
 async function loadPkDataDetails() {
     let savePkData = currentPkData.map(pkData => fetch(pkData.url).then(response => response.json()));
     let result = await Promise.all(savePkData);
+    console.log(result);
 
     for (let i = 0; i < result.length; i++) {
         let pokemon = result[i];
+        pokemonsCache[pokemon.abilities] = pokemon;
+        pokemonsCache[pokemon.base_experience] = pokemon;
+        pokemonsCache[pokemon.forms] = pokemon;
+        pokemonsCache[pokemon.game_indices] = pokemon;
+        pokemonsCache[pokemon.height] = pokemon;
         pokemonsCache[pokemon.id] = pokemon;
+        pokemonsCache[pokemon.moves] = pokemon;
         pokemonsCache[pokemon.name] = pokemon;
+        pokemonsCache[pokemon.species] = pokemon;
+        pokemonsCache[pokemon.weight] = pokemon;
+        pokemonsCache[pokemon.name] = pokemon; pokemonsCache[pokemon.name] = pokemon;
         console.log(pokemon.id);
         showThumbnailPkNamesAndTypes(pokemon);
     }
@@ -94,14 +104,11 @@ function searchPokemon() {
     let foundPokemon = pokemonsCache[wantedName];
 
     if (foundPokemon) {
-
-
         showPkDialog(foundPokemon.id);
     } else {
         showErrorSpeechBubble();
     }
 }
-
 
 function showErrorSpeechBubble() {
     const error = document.getElementById("error");
@@ -125,7 +132,17 @@ function showPkDialog(pokemonId) {
             pkTypeName2 = thisPokemon.types[1].type.name;
         }
         pkTypeName2StyleDialog(thisPokemon, pkTypeName1, pkTypeName2, bg_Color);
+        showAboutInDialog(thisPokemon);
     }
+}
+
+async function showAboutInDialog(thisPokemon) {
+    let saveURLContent = thisPokemon.species.url;
+    let species = await fetch(saveURLContent);
+        console.log(species);
+        
+    let data = await species.json();
+    console.log(data);
 }
 
 function pkTypeName2StyleDialog(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) {
@@ -153,9 +170,6 @@ function clickButtonNext(thisPokemonId) {
             pkTypeName2 = nextPokemon.types[1].type.name;
         }
         pkTypeName2StyleDialog(nextPokemon, pkTypeName1, pkTypeName2, bg_Color);
-
-
-
     }
 }
 
@@ -171,7 +185,6 @@ function clickButtonPrevious(thisPokemonId) {
             pkTypeName2 = previousPokemon.types[1].type.name;
         }
         pkTypeName2StyleDialog(previousPokemon, pkTypeName1, pkTypeName2, bg_Color);
-
     }
 }
 
