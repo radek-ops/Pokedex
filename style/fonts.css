@@ -13,6 +13,7 @@ h1 {
 
     color: var(--headline-color1);
     font-size: 63px;
+    
     font-weight: bolder;
     transform: rotate(4deg);
 }

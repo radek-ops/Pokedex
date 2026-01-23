@@ -28,7 +28,7 @@ let pkThumbnail = document.getElementById("thumbnail");
 let thumbnailBackgroundcolor = document.getElementById("thumbnailBackgroundcolor");
 let dialoglBackgroundcolor = document.getElementById("dialoglBackgroundcolor")
 let pkDialog = document.getElementById("dialog");
-
+    
 function init() {
     loadPkData();
 }
@@ -132,30 +132,53 @@ function showPkDialog(pokemonId) {
             pkTypeName2 = thisPokemon.types[1].type.name;
         }
         pkTypeName2StyleDialog(thisPokemon, pkTypeName1, pkTypeName2, bg_Color);
-        showAboutInDialog(thisPokemon);
+        
     }
 }
 
-async function showAboutInDialog(thisPokemon) {
-    let saveURLContent = thisPokemon.species.url;
-    let species = await fetch(saveURLContent);
-        console.log(species);
-        
-    let data = await species.json();
-    console.log(data);
-}
-
 function pkTypeName2StyleDialog(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) {
-
-    pkDialog.innerHTML = dialogHtmlTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color);
-
+       fullDialogHtml(thisPokemon, pkTypeName1, pkTypeName2, bg_Color);
+    
     if (thisPokemon.types.length === 1) {
         let pkTypeName2Style = document.getElementById("dialogTypeSlot2");
         if (pkTypeName2Style) {
             pkTypeName2Style.classList.add("unset-pkTypeName2Style-bg");
         }
     }
-    pkDialog.showModal();
+     
+}
+
+function fullDialogHtml(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) {
+      pkDialog.innerHTML =  dialogHeaderTpl() +
+        dialogUpperMainSectionTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) +
+        dialogLowerMainSectionTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color);
+        pkDialog.showModal();
+}
+
+
+
+async function showStatesInDialog(thisPokemon) {
+    // let saveURLContent = thisPokemon.species.url;
+    // let species = await fetch(saveURLContent);
+
+    // let data = await species.json();
+    // console.log(data);
+}
+
+async function showEvolutionInDialog(thisPokemon) {
+    // let saveURLContent = thisPokemon.species.url;
+    // let species = await fetch(saveURLContent);
+
+    // let data = await species.json();
+    // console.log(data);
+}
+
+async function showMovesInDialog(thisPokemon) {
+    // let saveURLContent = thisPokemon.species.url;
+    // let species = await fetch(saveURLContent);
+
+    // let data = await species.json();
+    // console.log(data);
 }
 
 function clickButtonNext(thisPokemonId) {
@@ -173,6 +196,7 @@ function clickButtonNext(thisPokemonId) {
     }
 }
 
+
 function clickButtonPrevious(thisPokemonId) {
     let nextPkId = Number(thisPokemonId) - 1;
     let previousPokemon = pokemonsCache[nextPkId];
@@ -187,6 +211,7 @@ function clickButtonPrevious(thisPokemonId) {
         pkTypeName2StyleDialog(previousPokemon, pkTypeName1, pkTypeName2, bg_Color);
     }
 }
+
 
 function closeButtonDialog() {
     pkDialog.close();
