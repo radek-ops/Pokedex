@@ -16,7 +16,7 @@ const typeColors = {
 };
 
 let BASE_URL = "";
-let SECONDARY_URL = "";
+
 let currentOffset = 0;
 let limit = 20;
 let currentPkData = [];
@@ -28,7 +28,7 @@ let pkThumbnail = document.getElementById("thumbnail");
 let thumbnailBackgroundcolor = document.getElementById("thumbnailBackgroundcolor");
 let dialoglBackgroundcolor = document.getElementById("dialoglBackgroundcolor")
 let pkDialog = document.getElementById("dialog");
-    
+
 function init() {
     loadPkData();
 }
@@ -61,7 +61,7 @@ async function loadPkDataDetails() {
         pokemonsCache[pokemon.species] = pokemon;
         pokemonsCache[pokemon.weight] = pokemon;
         pokemonsCache[pokemon.name] = pokemon; pokemonsCache[pokemon.name] = pokemon;
-        console.log(pokemon.id);
+        console.log(pokemon);
         showThumbnailPkNamesAndTypes(pokemon);
     }
 }
@@ -122,40 +122,56 @@ function showErrorSpeechBubble() {
 
 function showPkDialog(pokemonId) {
     let thisPokemon = pokemonsCache[pokemonId];
-    if (thisPokemon) {
-        let typeName = thisPokemon.types[0].type.name;
-        let bg_Color = typeColors[typeName];
+    if (!thisPokemon) return;
 
-        let pkTypeName1 = thisPokemon.types[0].type.name;
-        let pkTypeName2 = "";
-        if (thisPokemon.types.length > 1) {
-            pkTypeName2 = thisPokemon.types[1].type.name;
-        }
-        pkTypeName2StyleDialog(thisPokemon, pkTypeName1, pkTypeName2, bg_Color);
-        
+    let typeName = thisPokemon.types[0].type.name;
+    let bg_Color = typeColors[typeName];
+    let pkTypeName1 = thisPokemon.types[0].type.name;
+    let pkTypeName2 = "";
+
+    if (thisPokemon.types.length > 1) {
+        pkTypeName2 = thisPokemon.types[1].type.name;
     }
+
+    renderDialogContent(thisPokemon, pkTypeName1, pkTypeName2, bg_Color);
 }
 
-function pkTypeName2StyleDialog(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) {
-       fullDialogHtml(thisPokemon, pkTypeName1, pkTypeName2, bg_Color);
-    
+function renderDialogContent(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) {
+    pkDialog.innerHTML = dialogHeaderTpl() +
+        dialogUpperMainSectionTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) +
+        dialogLowerMainSectionTpl(thisPokemon);
+
     if (thisPokemon.types.length === 1) {
         let pkTypeName2Style = document.getElementById("dialogTypeSlot2");
         if (pkTypeName2Style) {
             pkTypeName2Style.classList.add("unset-pkTypeName2Style-bg");
         }
     }
-     
+
+    pkDialog.showModal();
+    showAboutInDialog(thisPokemon);
 }
 
-function fullDialogHtml(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) {
-      pkDialog.innerHTML =  dialogHeaderTpl() +
-        dialogUpperMainSectionTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) +
-        dialogLowerMainSectionTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color);
-        pkDialog.showModal();
+function addDialogHtmlContent(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) {
+    pkDialog.innerHTML = dialogLowerMainSectionTpl(thisPokemon);
+    showAboutInDialog(thisPokemon);
+
+    pkDialog.showModal();
 }
 
+async function showAboutInDialog(thisPokemon) {
+    let currentPokemonDialog = {};
+    currentPokemonDialog.id = thisPokemon.id;
+    currentPokemonDialog.height = thisPokemon.height;
+    currentPokemonDialog.weight = thisPokemon.weight;
+    currentPokemonDialog.abilities1 = thisPokemon.abilities[0].ability.name;
+    currentPokemonDialog.abilities2 = thisPokemon.abilities[1].ability.name;
+    console.log(currentPokemonDialog);
 
+    let content = await fetch(thisPokemon.species.url).then(response => response.json());
+    currentPokemonDialog.category = content.genera[7].genus
+   
+}
 
 async function showStatesInDialog(thisPokemon) {
     // let saveURLContent = thisPokemon.species.url;
@@ -196,7 +212,6 @@ function clickButtonNext(thisPokemonId) {
     }
 }
 
-
 function clickButtonPrevious(thisPokemonId) {
     let nextPkId = Number(thisPokemonId) - 1;
     let previousPokemon = pokemonsCache[nextPkId];
@@ -211,7 +226,6 @@ function clickButtonPrevious(thisPokemonId) {
         pkTypeName2StyleDialog(previousPokemon, pkTypeName1, pkTypeName2, bg_Color);
     }
 }
-
 
 function closeButtonDialog() {
     pkDialog.close();

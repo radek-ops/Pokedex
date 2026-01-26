@@ -69,10 +69,21 @@ function dialogLowerMainSectionTpl(thisPokemon) {
     <div class=about-container>
         <table id="table-about" class="about">
             <tbody>
-                <tr>
+                 <tr>
                     <td><b>ID:</b></td>
-                    <td></td>
-                </tr>
+                 </tr>   
+                 <tr>
+                    <td><b>Height:</b></td>
+                 </tr>
+                 <tr>
+                    <td><b>Weight:</b></td>
+                 </tr>
+                 <tr>
+                    <td><b>Abilities:</b></td>
+                 </tr>
+                 <tr>
+                    <td><b>Category</b></td>
+                 </tr>
             </tbody>
         </table>
     </div>
