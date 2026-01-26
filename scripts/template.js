@@ -1,7 +1,7 @@
 
 function renderThumbnailsContentTpl(pokemon, pkTypeName1, pkTypeName2, bg_Color) {
 
-  return  `<button id="thumbnailBackgroundcolor" style="background-color:${bg_Color}" class="singel-thumbnail" type="button"
+    return  /*html*/`<button id="thumbnailBackgroundcolor" style="background-color:${bg_Color}" class="singel-thumbnail" type="button"
     onclick="showPkDialog('${pokemon.id}', '${pkTypeName1}', '${pkTypeName2}', '${bg_Color}')">
     <div class="thumbnail-name-container">
         <span class="thumbnail-name"><b class="pkName">
@@ -11,9 +11,9 @@ function renderThumbnailsContentTpl(pokemon, pkTypeName1, pkTypeName2, bg_Color)
     <div class="thumbnail-typeNames-img">
         <div class="pk-types">
             <span id="typeSlot1" class="pkType-name1">${pkTypeName1.charAt(0).toUpperCase() +
-                pkTypeName1.slice(1)}</span>
+        pkTypeName1.slice(1)}</span>
             <span id="typeSlot2${pokemon.id}" class="pkType-name2">${pkTypeName2.charAt(0).toUpperCase() +
-                pkTypeName2.slice(1)}</span>
+        pkTypeName2.slice(1)}</span>
         </div>
         <img class="thumbnail-images" src="${pokemon.sprites.other.showdown.front_default}" alt="Image${pokemon.name}">
     </div>
@@ -21,7 +21,7 @@ function renderThumbnailsContentTpl(pokemon, pkTypeName1, pkTypeName2, bg_Color)
 }
 
 function dialogHeaderTpl() {
-    return  `<div class="dialog-body" onclick="closeDialogOutsite(event)">
+    return /*html*/`<div class="dialog-body" onclick="closeDialogOutsite(event)">
     <header id="headline" class="dialog-header" onclick="closeDialogOutsite(event)">
         <nav class="nav-dialog">
             <h2 class="headline-title-dialog">
@@ -34,19 +34,19 @@ function dialogHeaderTpl() {
     </header>`;
 }
 
-function dialogUpperMainSectionTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color){  
-   return`<main class="main-dialog">
+function dialogUpperMainSectionTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) {
+    return /*html*/`<main class="main-dialog">
     <h2 id="pkName" class="h2-dialog"></h2>
     <section class="upper-section-dialog">
         <div id="dialoglBackgroundcolor" style="background-color:${bg_Color}" class="upper-section-container">
             <div class="dialog-name-container">
                 <span class="dialog-name"><b class="dialog-pkName">${thisPokemon.name.charAt(0).toUpperCase() +
-                        thisPokemon.name.slice(1)}</b></span>
+        thisPokemon.name.slice(1)}</b></span>
                 <div class="dialog-pk-types">
                     <span id="dialogTypeSlot1" class="dialog-pkType-name1">${pkTypeName1.charAt(0).toUpperCase() +
-                        pkTypeName1.slice(1)}</span>
+        pkTypeName1.slice(1)}</span>
                     <span id="dialogTypeSlot2" class="dialog-pkType-name2">${pkTypeName2.charAt(0).toUpperCase() +
-                        pkTypeName2.slice(1)}</span>
+        pkTypeName2.slice(1)}</span>
                 </div>
             </div>
             <div class="dialog-img-container">
@@ -55,11 +55,11 @@ function dialogUpperMainSectionTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Col
             </div>
         </div>
     </section>`;
-      
-  }
-      
-function dialogLowerMainSectionTpl(thisPokemon){
-                   return ` <section class="lower-section-dialog">
+
+}
+
+function dialogLowerMainSectionTpl(thisPokemon) {
+    return /*html*/` <section class="lower-section-dialog">
     <div class="lower-container">
         <button type="button" onclick="showAboutInDialog('${thisPokemon}')"><span>About</span></button>
         <button type="button" onclick="showStatesInDialog('${thisPokemon}')"><span>States</span></button>
