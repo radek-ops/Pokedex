@@ -212,7 +212,7 @@
     margin-bottom: 16px;
 }
 
-.lower-section-dialog {
+.about-section-dialog {
 
     margin-top: 42px;
     display: flex;
@@ -220,7 +220,7 @@
 
 }
 
-.lower-container {
+.about-lower-container {
 
     width: 100%;
     display: flex;

@@ -16,18 +16,17 @@ const typeColors = {
 };
 
 let BASE_URL = "";
-
 let currentOffset = 0;
 let limit = 20;
 let currentPkData = [];
 let currentPokemonsDetails = [];
 let pkDetails = [];
-let pokemonsCache = {};
+const pokemonsCache = {};
 let currentUrl = 0;
 let pkThumbnail = document.getElementById("thumbnail");
 let thumbnailBackgroundcolor = document.getElementById("thumbnailBackgroundcolor");
 let dialoglBackgroundcolor = document.getElementById("dialoglBackgroundcolor")
-let pkDialog = document.getElementById("dialog");
+const pkDialog = document.getElementById("dialog");
 
 function init() {
     loadPkData();
@@ -35,7 +34,6 @@ function init() {
 
 async function loadPkData() {
     BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${currentOffset}`;
-
     let response = await fetch(BASE_URL, { method: "GET" });
     let data = await response.json();
     currentPkData = data.results;
@@ -50,18 +48,9 @@ async function loadPkDataDetails() {
 
     for (let i = 0; i < result.length; i++) {
         let pokemon = result[i];
-        pokemonsCache[pokemon.abilities] = pokemon;
-        pokemonsCache[pokemon.base_experience] = pokemon;
-        pokemonsCache[pokemon.forms] = pokemon;
-        pokemonsCache[pokemon.game_indices] = pokemon;
-        pokemonsCache[pokemon.height] = pokemon;
         pokemonsCache[pokemon.id] = pokemon;
-        pokemonsCache[pokemon.moves] = pokemon;
         pokemonsCache[pokemon.name] = pokemon;
-        pokemonsCache[pokemon.species] = pokemon;
-        pokemonsCache[pokemon.weight] = pokemon;
-        pokemonsCache[pokemon.name] = pokemon; pokemonsCache[pokemon.name] = pokemon;
-        console.log(pokemon);
+
         showThumbnailPkNamesAndTypes(pokemon);
     }
 }
@@ -73,7 +62,6 @@ function loadMorePk() {
 }
 
 function showThumbnailPkNamesAndTypes(pokemon) {
-    console.log(pokemon);
     let pkTypeName1 = pokemon.types[0].type.name;
     console.log(pkTypeName1);
     let pkTypeName2 = "";
@@ -86,7 +74,7 @@ function showThumbnailPkNamesAndTypes(pokemon) {
 function showThumbnailBackgroundcolor(pokemon, pkTypeName1, pkTypeName2) {
     let typeName = pokemon.types[0].type.name;
     let bg_Color = typeColors[typeName];
-    console.log(bg_Color);
+    console.log(pokemon.id);
     pkThumbnail.innerHTML += renderThumbnailsContentTpl(pokemon, pkTypeName1, pkTypeName2, bg_Color);
     pkTypeName2StyleThumbnail(pokemon);
 }
@@ -122,8 +110,6 @@ function showErrorSpeechBubble() {
 
 function showPkDialog(pokemonId) {
     let thisPokemon = pokemonsCache[pokemonId];
-    if (!thisPokemon) return;
-
     let typeName = thisPokemon.types[0].type.name;
     let bg_Color = typeColors[typeName];
     let pkTypeName1 = thisPokemon.types[0].type.name;
@@ -133,13 +119,36 @@ function showPkDialog(pokemonId) {
         pkTypeName2 = thisPokemon.types[1].type.name;
     }
 
-    renderDialogContent(thisPokemon, pkTypeName1, pkTypeName2, bg_Color);
+    prepareDialogData(thisPokemon, pkTypeName1, pkTypeName2, bg_Color);
 }
 
-function renderDialogContent(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) {
+async function prepareDialogData(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) {
+    let abilities = { ability1: "", ability2: "", ability3: "" };
+    let list = thisPokemon.abilities;
+
+    abilities.ability1 = list[0].ability.name;
+
+    if (list.length > 1) {
+        abilities.ability1 += ", ";
+        abilities.ability2 = list[1].ability.name;
+    }
+    if (list.length > 2) {
+        abilities.ability2 += ", ";
+        abilities.ability3 = list[2].ability.name;
+    }
+    let currentCategory = await fetch(thisPokemon.species.url).then(response => response.json());
+    let pkcategory = currentCategory.genera[7].genus
+
+    if (pkcategory && abilities) {
+        renderFullDialog(thisPokemon, pkTypeName1, pkTypeName2, bg_Color, abilities, pkcategory);
+    }
+}
+
+function renderFullDialog(thisPokemon, pkTypeName1, pkTypeName2, bg_Color, abilities, pkcategory) {
     pkDialog.innerHTML = dialogHeaderTpl() +
-        dialogUpperMainSectionTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) +
-        dialogLowerMainSectionTpl(thisPokemon);
+        dialogUpperSectionTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) +
+        dialogAboutSectionTpl(thisPokemon, abilities, pkcategory) +
+        dialogFooterTpl(thisPokemon);
 
     if (thisPokemon.types.length === 1) {
         let pkTypeName2Style = document.getElementById("dialogTypeSlot2");
@@ -149,52 +158,27 @@ function renderDialogContent(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) {
     }
 
     pkDialog.showModal();
-    showAboutInDialog(thisPokemon);
 }
 
-function addDialogHtmlContent(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) {
-    pkDialog.innerHTML = dialogLowerMainSectionTpl(thisPokemon);
-    showAboutInDialog(thisPokemon);
-
-    pkDialog.showModal();
-}
-
-async function showAboutInDialog(thisPokemon) {
-    let currentPokemonDialog = {};
-    currentPokemonDialog.id = thisPokemon.id;
-    currentPokemonDialog.height = thisPokemon.height;
-    currentPokemonDialog.weight = thisPokemon.weight;
-    currentPokemonDialog.abilities1 = thisPokemon.abilities[0].ability.name;
-    currentPokemonDialog.abilities2 = thisPokemon.abilities[1].ability.name;
-    console.log(currentPokemonDialog);
-
-    let content = await fetch(thisPokemon.species.url).then(response => response.json());
-    currentPokemonDialog.category = content.genera[7].genus
+async function showStatesInDialog(thisPokemonId) {
+    let thisPokemon = pokemonsCache[thisPokemonId];
+         console.log(thisPokemon);
+            
+         pkDialog.innerHTML = dialogStatesSectionTpl(thisPokemon);
+        
+    
    
+
 }
 
-async function showStatesInDialog(thisPokemon) {
-    // let saveURLContent = thisPokemon.species.url;
-    // let species = await fetch(saveURLContent);
+async function showEvolutionInDialog(thisPokemonId) {
+    let thisPokemon = pokemonsCache[thisPokemonId];
 
-    // let data = await species.json();
-    // console.log(data);
 }
 
-async function showEvolutionInDialog(thisPokemon) {
-    // let saveURLContent = thisPokemon.species.url;
-    // let species = await fetch(saveURLContent);
+async function showMovesInDialog(thisPokemonId) {
+    let thisPokemon = pokemonsCache[thisPokemonId];
 
-    // let data = await species.json();
-    // console.log(data);
-}
-
-async function showMovesInDialog(thisPokemon) {
-    // let saveURLContent = thisPokemon.species.url;
-    // let species = await fetch(saveURLContent);
-
-    // let data = await species.json();
-    // console.log(data);
 }
 
 function clickButtonNext(thisPokemonId) {
@@ -208,7 +192,7 @@ function clickButtonNext(thisPokemonId) {
         if (nextPokemon.types.length > 1) {
             pkTypeName2 = nextPokemon.types[1].type.name;
         }
-        pkTypeName2StyleDialog(nextPokemon, pkTypeName1, pkTypeName2, bg_Color);
+        prepareDialogData(nextPokemon, pkTypeName1, pkTypeName2, bg_Color);
     }
 }
 
@@ -223,7 +207,7 @@ function clickButtonPrevious(thisPokemonId) {
         if (previousPokemon.types.length > 1) {
             pkTypeName2 = previousPokemon.types[1].type.name;
         }
-        pkTypeName2StyleDialog(previousPokemon, pkTypeName1, pkTypeName2, bg_Color);
+        prepareDialogData(previousPokemon, pkTypeName1, pkTypeName2, bg_Color);
     }
 }
 
