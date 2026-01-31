@@ -140,6 +140,11 @@ input {
     flex: 1;
 
 }
+.modal-open {
+  overflow: hidden;
+  padding-right: 15px; 
+}
+
 
 .page-main {
 

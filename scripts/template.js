@@ -60,7 +60,7 @@ function dialogUpperSectionTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color) 
 function dialogAboutSectionTpl(thisPokemon, abilities, pkcategory) {
     return /*html*/` <section class="about-section-dialog">
     <div class="abaout-lower-container">
-        <button type="button" ><span>About</span></button>
+        <button type="button" onclick="showAboutInDialog(${thisPokemon.id})"><span>About</span></button>
         <button type="button" onclick="showStatesInDialog(${thisPokemon.id})"><span>States</span></button>
         <button type="button" onclick="showEvolutionInDialog(${thisPokemon.id})"><span>Evolution</span></button>
         <button type="button" onclick="showMovesInDialog(${thisPokemon.id})"><span>Moves</span></button>
@@ -76,19 +76,20 @@ function dialogAboutSectionTpl(thisPokemon, abilities, pkcategory) {
                  </tr>
                  <tr>
                     <td><b>Weight: </b>${thisPokemon.weight}</td>
+                    <tr>
+                    <td><b>Base-experience: </b>${thisPokemon.base_experience}</td>
+                 </tr>
                  </tr>
                      <td><b>Category: </b>${pkcategory}</td>
                  </tr>
             </tbody>
         </table>
         <div class="abilities">  
-          <span id="abilities${thisPokemon.id}"><b>Abilities: </b>${abilities.ability1}</span>
-           <span id="abilities${thisPokemon.id}">${abilities.ability2}</span>
-           <span id="abilities${thisPokemon.id}">${abilities.ability3}</span>
+          <span id="abilities${thisPokemon.id}"><b>Abilities: </b>${abilities.ability1.charAt().toUpperCase() + abilities.ability1.slice(1)}</span>
+           <span id="abilities${thisPokemon.id}">${abilities.ability2.charAt().toUpperCase() + abilities.ability2.slice(1)}</span>
+           <span id="abilities${thisPokemon.id}">${abilities.ability3.charAt().toUpperCase() + abilities.ability3.slice(1)}</span>
          </div>
-               
-   </div>
-   
+       </div>
 </section>`;
 }
 
@@ -101,46 +102,91 @@ function dialogStatesSectionTpl(thisPokemon) {
         <button type="button" onclick="showMovesInDialog(${thisPokemon.id})"><span>Moves</span></button>
     </div>
     <div class=states-container>
-        <table id="states-about" class="states">
+        <table id="table-states" class="states">
             <tbody>
-                 <tr>
-                    <td><b>${thisPokemon.stats[0].stat.name.toUpperCase()}</b>${thisPokemon.stats[0].base_stat}</td>
+                                 <tr>
+                    <td><b>${thisPokemon.stats[0].stat.name.charAt().toUpperCase() + thisPokemon.stats[0].stat.name.slice(1)}</b>: ${thisPokemon.stats[0].base_stat}</td>
                  </tr>   
                  <tr>
-                    <td><b>${thisPokemon.stats[1].stat.name.toUpperCase()}</b>${thisPokemon.stats[1].base_stat}</td>
+                    <td><b>${thisPokemon.stats[1].stat.name.charAt().toUpperCase() + thisPokemon.stats[1].stat.name.slice(1)}</b>: ${thisPokemon.stats[1].base_stat} </td>
                  </tr>
                   <tr>
-                    <td><b>${thisPokemon.stats[2].stat.name.toUpperCase()}</b>${thisPokemon.stats[2].base_stat}</td>
+                    <td><b>${thisPokemon.stats[2].stat.name.charAt().toUpperCase() + thisPokemon.stats[2].stat.name.slice(1)}</b>: ${thisPokemon.stats[2].base_stat} </td>
                  </tr>
                   <tr>
-                    <td><b>${thisPokemon.stats[3].stat.name.toUpperCase()}</b>${thisPokemon.stats[3].base_stat}</td>
+                    <td><b>${thisPokemon.stats[3].stat.name.charAt().toUpperCase() + thisPokemon.stats[3].stat.name.slice(1)}</b>: ${thisPokemon.stats[3].base_stat} </td>
                  </tr>
                   <tr>
-                    <td><b>${thisPokemon.stats[4].stat.name.toUpperCase()}</b>${thisPokemon.stats[4].base_stat}</td>
+                    <td><b>${thisPokemon.stats[4].stat.name.charAt().toUpperCase() + thisPokemon.stats[4].stat.name.slice(1)}</b>: ${thisPokemon.stats[4].base_stat} </td>
                  </tr>
                   <tr>
-                    <td><b>${thisPokemon.stats[5].stat.name.toUpperCase()}</b>${thisPokemon.stats[5].base_stat}</td>
-                
+                    <td><b>${thisPokemon.stats[5].stat.name.charAt().toUpperCase() + thisPokemon.stats[5].stat.name.slice(1)}</b>: ${thisPokemon.stats[5].base_stat} </td>
             </tbody>
         </table>
-                       
-   </div>
-   
-</section>`;
+      </div>
+   </section>`;
+}
 
-
+function dialogEvolutionSectionTpl(thisPokemon, evoNames) {
+    return /*html*/` <section class="evolution-section-dialog">
+    <div class="evolution-lower-container">
+        <button type="button" onclick="showAboutInDialog(${thisPokemon.id})"><span>About</span></button>
+         <button type="button" onclick="showStatesInDialog(${thisPokemon.id})"><span>States</span></button>
+        <button type="button" ><span>Evolution</span></button>
+        <button type="button" onclick="showMovesInDialog(${thisPokemon.id})"><span>Moves</span></button>
+    </div>
+    <div class=evolution-container>
+        <table id="table-evolution" class="evolution">
+            <tbody>
+                  <tr>
+                    <td><b>Evolotion-chain:</b></td>
+                 </tr>   
+                 <tr>
+                    <td>${evoNames[0] + ","}</td>
+                 </tr>
+                  <tr>
+                    <td>${evoNames[1] + ","}</td>
+                 </tr>
+                  <tr>
+                    <td>${evoNames[2] + ","}</td>
+                 </tr>
+                  <tr>
+             </tbody>
+        </table>
+      </div>
+   <section>`;
 }
 
 
-
-
-
-
-
-
-
-
-
+function dialogMovesSectionTpl(thisPokemon, i ) {
+    return /*html*/` <section class="moves-section-dialog">
+    <div class="moves-lower-container">
+        <button type="button" onclick="showAboutInDialog(${thisPokemon.id})"><span>About</span></button>
+         <button type="button" onclick="showStatesInDialog(${thisPokemon.id})"><span>States</span></button>
+        <button type="button" onclick="showEvolutionInDialog(${thisPokemon.id})" ><span>Evolution</span></button>
+        <button type="button" onclick="showMovesInDialog(${thisPokemon.id})"><span>Moves</span></button>
+    </div>
+    <div class=moves-container>
+        <table  class="moves">
+            <tbody>
+                  <tr>
+                    <td><b>Moves: </b></td>
+                 </tr>   
+                 <tr>
+                    <td id="table-moves">${i}</td>
+                 </tr>
+                  <tr>
+                    <td></td>
+                 </tr>
+                  <tr>
+                    <td></td>
+                 </tr>
+                  <tr>
+            </tbody>
+        </table>
+     </div>
+</section>`;
+}
 
 function dialogFooterTpl(thisPokemon){
     return `</main>
