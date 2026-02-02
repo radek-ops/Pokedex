@@ -1,0 +1,41 @@
+h1 {
+
+    display: flex;
+    font-family: "Boldonse", system-ui;
+    font-weight:bold;
+    align-items: center;
+    text-transform: none;
+    margin-top: 6px;
+     
+}
+
+.part-1 {
+
+    color: var(--headline-color1);
+    font-size: 63px;
+    
+    font-weight: bolder;
+    transform: rotate(4deg);
+}
+
+.part-2 {
+
+    color: var(--headline-color2);
+    font-weight: bolder;
+    transform: rotate(-3deg);
+     font-size: 60px;
+}
+
+.divider {
+
+    width: 18px;
+    height: 30px;
+    background-color:var(--headline-color1);
+    margin: 0 15px;
+    transform: rotate(35deg);
+    border: 3px solid;
+    color: var(--headline-color2);
+    border-radius: 3px;
+    display: inline-block;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}

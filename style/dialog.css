@@ -1,0 +1,326 @@
+.dialog-body {
+
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    padding: 0;
+
+}
+
+.dialog-header {
+
+    width: 100%;
+    height: 70px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: black;
+    box-shadow: 0px 0px 20px 5px rgb(151, 21, 21);
+    z-index: 2;
+}
+
+.h2-dialog {
+
+    display: flex;
+    font-family: "Boldonse", system-ui;
+    font-weight: bold;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+
+}
+
+.divider-dialog {
+
+    width: 12px;
+    height: 20px;
+    background-color: var(--headline-color1);
+    margin: 0 16px;
+    transform: rotate(35deg);
+    border: 3px solid;
+    color: var(--headline-color2);
+    border-radius: 3px;
+    display: inline-block;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+}
+
+.headline-title-dialog {
+
+    display: flex;
+    margin-top: 12px;
+}
+
+.part-1-dialog {
+
+    display: flex;
+    color: var(--headline-color1);
+    font-size: 32px;
+    font-weight: bolder;
+    transform: rotate(5deg);
+}
+
+.part-2-dialog {
+
+    color: var(--headline-color2);
+    font-weight: bolder;
+    transform: rotate(-4deg);
+    font-size: 30px;
+}
+
+.close-button-dialog {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 180px;
+    border-width: 6px;
+    font-size: 30px;
+    padding-bottom: 4px;
+    font-family: "Boldonse", system-ui;
+    font-weight: bold;
+
+}
+
+.nav-dialog {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    padding-top: 6px;
+    padding-left: 16px;
+    padding-right: 8px;
+}
+
+.main-dialog {
+
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0px 10px 20px 8px rgb(151, 21, 21);
+
+}
+
+.upper-section-dialog {
+    background-color: black;
+    display: flex;
+
+}
+
+.dialog-name-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 4px;
+    flex: 1;
+    box-sizing: border-box;
+    padding-left: 16px;
+}
+
+.upper-section-container {
+
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 5px 5px 8px 0px var(--link_and_img-color);
+
+}
+
+.dialog-name {
+
+    margin-top: 8px;
+    font-family: "Ubuntu", sans-serif;
+    margin-bottom: 16px;
+
+}
+
+.dialog-pkName {
+
+    font-family: "Ubuntu", sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--color-black);
+
+}
+
+.dialog-images {
+
+    width: 200px;
+    height: 200px;
+
+}
+
+.dialog-img-container {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -16px;
+}
+
+
+.dialog-pk-types {
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    box-sizing: border-box;
+    flex: 1;
+    gap: 8px;
+
+}
+
+.dialog-pkType-name1 {
+
+    display: flex;
+    justify-content: center;
+    width: 80px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    padding: 2px 6px 2px 6px;
+    color: var(--color-black);
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+
+}
+
+.dialog-pkType-name2 {
+
+    display: flex;
+    justify-content: center;
+    width: 80px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    padding: 2px 6px 2px 6px;
+    color: var(--color-black);
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.dialog-typeNames-img {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.about-section-dialog {
+
+    margin-top: 42px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.about-lower-container {
+
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+
+li {
+
+    margin-bottom: 8px;
+
+}
+
+.about,
+.states,
+.evolution,
+.moves {
+
+    display: flex;
+    list-style: none;
+    padding: 8px;
+    padding-bottom: 0;
+    width: 100%;
+}
+
+
+.about-content,
+.states-content,
+.evolution-content,
+.moves-content {
+
+    margin-top: 20px;
+    
+}
+
+.abilities {
+    margin-left: 8px;
+}
+
+td {
+    padding-bottom: 6px;
+}
+
+.dialogButtons {
+
+    border-width: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dialogButtons:focus {
+    background-color: #FF3D00;
+    color: white;
+    border-color: #fff;
+}
+
+
+
+.footer-dialog {
+    width: 100%;
+    height: 50px;
+}
+
+.arrow-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    border-radius: 25px;
+    border-style: solid;
+    background-color: rgb(66, 84, 219);
+    box-shadow: 2px 2px 10px 15px rgba(66, 84, 219, 0.5);
+}
+
+.arrow-button {
+    display: inline-block;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 50%;
+    border-width: 6px;
+    font-size: 20px;
+    color: white;
+    background: rgba(255, 44, 0);
+}
+
+.pokemon-dialog {
+
+    width: 90%;
+    max-width: 350px;
+    border-radius: 16px;
+    border: 2px;
+    border-style: solid;
+    border-color: var(--color-white);
+    box-shadow: 5px 5px 8px 0px var(--link_and_img-color);
+    background-color: transparent;
+    padding: 3px;
+}
+
+.pokemon-dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+
+}
