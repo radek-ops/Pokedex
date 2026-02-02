@@ -147,6 +147,8 @@ function dialogEvolutionSectionTpl(thisPokemon, evoNames) {
    <section>`;
 }
 
+
+
 function dialogMovesSectionTpl(thisPokemon) {
     return /*html*/`<section >    
     <div class="moves-content">

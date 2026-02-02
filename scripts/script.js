@@ -174,6 +174,7 @@ async function showEvolutionInDialog(pokemonId) {
     loadingSpinner(false);
 }
 
+
 function showMovesInDialog(thisPokemonId) {
     let thisPokemon = pokemonsCache[thisPokemonId];
     let contentMoves = document.getElementById("dialogContent");
