@@ -19,7 +19,10 @@
 }
 
 .h2-dialog {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     display: flex;
     font-family: "Boldonse", system-ui;
     font-weight: bold;
@@ -79,12 +82,18 @@
     padding-bottom: 4px;
     font-family: "Boldonse", system-ui;
     font-weight: bold;
+<<<<<<< HEAD
     cursor: pointer;
+=======
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 
 }
 
 .nav-dialog {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -94,6 +103,7 @@
     padding-right: 8px;
 }
 
+<<<<<<< HEAD
 .main-dialog {
 
     display: flex;
@@ -101,12 +111,25 @@
     background-color: white;
     box-shadow: 0px 5px 20px 0px rgb(151, 21, 21);
     border-radius: 16px;
+=======
+
+.main-dialog {
+    height: 63vh;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0px 10px 20px 8px rgb(151, 21, 21);
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 
 }
 
 .upper-section-dialog {
     background-color: black;
     display: flex;
+<<<<<<< HEAD
+=======
+    height: 30px;
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 
 }
 
@@ -116,6 +139,7 @@
     flex-direction: column;
     align-items: flex-start;
     margin-left: 4px;
+<<<<<<< HEAD
     padding-left: 8px;
 }
 
@@ -129,6 +153,23 @@
     border-radius: 16px 16px 0 0;
     box-shadow: 5px 5px 8px 0px var(--link_and_img-color);
 
+=======
+    flex: 1;
+    box-sizing: border-box;
+    padding-left: 16px;
+}
+
+.singel-dialog {
+
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 5px 5px 8px 0px var(--link_and_img-color);
+    
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 }
 
 .dialog-name {
@@ -142,13 +183,18 @@
 .dialog-pkName {
 
     font-family: "Ubuntu", sans-serif;
+<<<<<<< HEAD
     font-size: 26px;
+=======
+    font-size: 30px;
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     font-weight: bold;
     color: var(--color-black);
 
 }
 
 .dialog-images {
+<<<<<<< HEAD
 
     max-width: 150px;
     max-height: 160px;
@@ -162,6 +208,25 @@
     align-items: flex-end;
     justify-content: flex-start;
     margin-bottom: -21px;
+=======
+    width: 200px;
+    height: 200px;
+    
+}
+.dialog-img-container{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -16px;
+}
+
+.thumbnail-images:hover {
+
+    transform: scale(1.3);
+    transform: rotate(360deg);
+    transition: 0.7s;
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 
 }
 
@@ -169,15 +234,25 @@
 
     display: flex;
     align-items: flex-start;
+<<<<<<< HEAD
     flex-direction: column;
     box-sizing: border-box;
     flex: 1;
     gap: 8px;
+=======
+    justify-content: center;
+    box-sizing: border-box;
+    flex: 1;
+    gap: 8px;;
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 
 }
 
 .dialog-pkType-name1 {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     display: flex;
     justify-content: center;
     width: 80px;
@@ -188,11 +263,17 @@
     font-family: "Ubuntu", sans-serif;
     font-size: 16px;
     font-weight: 400;
+<<<<<<< HEAD
 
 }
 
 .dialog-pkType-name2 {
 
+=======
+}
+
+.dialog-pkType-name2 {
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     display: flex;
     justify-content: center;
     width: 80px;
@@ -205,7 +286,11 @@
     font-weight: 400;
 }
 
+<<<<<<< HEAD
 .dialog-typeNames-img {
+=======
+.dialog-typeNames-img{
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 
     display: flex;
     align-items: center;
@@ -213,6 +298,7 @@
     margin-bottom: 16px;
 }
 
+<<<<<<< HEAD
 
 
 .about-section-dialog {
@@ -286,15 +372,44 @@ td {
 
 .footer-dialog {
 
+=======
+.lower-section-dialog{
+display: flex;
+justify-content: center;
+align-items: center;
+
+
+
+}
+
+.lower-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  margin-left: 8px;
+  margin-right: 8px;
+  
+}
+
+.footer-dialog {
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     width: 100%;
     height: 50px;
 }
 
 .arrow-container {
+<<<<<<< HEAD
 
     display: flex;
     justify-content: space-between;
     margin-top: 12px;
+=======
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     border-radius: 25px;
     border-style: solid;
     background-color: rgb(66, 84, 219);
@@ -302,7 +417,10 @@ td {
 }
 
 .arrow-button {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     display: inline-block;
     justify-content: center;
     align-items: flex-start;
@@ -311,20 +429,30 @@ td {
     font-size: 20px;
     color: white;
     background: rgba(255, 44, 0);
+<<<<<<< HEAD
     cursor: pointer;
+=======
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 }
 
 .pokemon-dialog {
 
     width: 90%;
+<<<<<<< HEAD
     width: 318px;
     height: 615px;
+=======
+    max-width: 350px;
+    height: auto;
+    max-height: 80vh;
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     border-radius: 16px;
     border: 2px;
     border-style: solid;
     border-color: var(--color-white);
     box-shadow: 5px 5px 8px 0px var(--link_and_img-color);
     background-color: transparent;
+<<<<<<< HEAD
     scrollbar-width: thin;
 }
 
@@ -450,4 +578,7 @@ td {
 
     }
 
+=======
+    padding: 3px;
+>>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 }
