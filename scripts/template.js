@@ -11,9 +11,9 @@ function renderThumbnailsContentTpl(pokemon, pkTypeName1, pkTypeName2, bg_Color)
     <div class="thumbnail-typeNames-img">
         <div class="pk-types">
             <span id="typeSlot1" class="pkType-name1">${pkTypeName1.charAt(0).toUpperCase() +
-        pkTypeName1.slice(1)}</span>
+                pkTypeName1.slice(1)}</span>
             <span id="typeSlot2${pokemon.id}" class="pkType-name2">${pkTypeName2.charAt(0).toUpperCase() +
-        pkTypeName2.slice(1)}</span>
+                pkTypeName2.slice(1)}</span>
         </div>
         <img class="thumbnail-images" src="${pokemon.sprites.other.showdown.front_default}" alt="Image${pokemon.name}">
     </div>
@@ -66,33 +66,41 @@ function dialogUpperSectionTpl(thisPokemon, pkTypeName1, pkTypeName2, bg_Color, 
 }
 
 function dialogAboutSectionTpl(thisPokemon, abilities, pkcategory) {
-    return /*html*/` <section>   
+    return /*html*/`<section>
     <div class="about-content">
         <table id="table-about" class="about">
             <tbody>
-                 <tr>
+                <tr>
                     <td><b>ID: </b>${thisPokemon.id}</td>
-                 </tr>   
-                 <tr>
+                </tr>
+                <tr>
                     <td><b>Height: </b>${thisPokemon.height}</td>
-                 </tr>
-                 <tr>
+                </tr>
+                <tr>
                     <td><b>Weight: </b>${thisPokemon.weight}</td>
-                    <tr>
+                <tr>
                     <td><b>Base-experience: </b>${thisPokemon.base_experience}</td>
-                 </tr>
-                 </tr>
-                     <td><b>Category: </b>${pkcategory}</td>
-                 </tr>
+                </tr>
+                </tr>
+                <td><b>Category: </b>${pkcategory}</td>
+                </tr>
+                <tr>
+                    <td id="abilities${thisPokemon.id}"><b>Abilities: </b>${abilities.ability1.charAt().toUpperCase() +
+                        abilities.ability1.slice(1)}</td>
+                </tr>
+                <tr>
+                    <td id="abilities${thisPokemon.id}">${abilities.ability2.charAt().toUpperCase() +
+                        abilities.ability2.slice(1)}</td>
+                </tr>
+                <tr>
+                    <td id="abilities${thisPokemon.id}">${abilities.ability3.charAt().toUpperCase() +
+                        abilities.ability3.slice(1)}</td>
+                </tr>
             </tbody>
         </table>
-        <div class="abilities">  
-           <span id="abilities${thisPokemon.id}"><b>Abilities: </b>${abilities.ability1.charAt().toUpperCase() + abilities.ability1.slice(1)}</span>
-           <span id="abilities${thisPokemon.id}">${abilities.ability2.charAt().toUpperCase() + abilities.ability2.slice(1)}</span>
-           <span id="abilities${thisPokemon.id}">${abilities.ability3.charAt().toUpperCase() + abilities.ability3.slice(1)}</span>
-         </div>
-       </div>
-</section>`;
+
+    </div>
+</section> `;
 }
 
 function dialogStatesSectionTpl(thisPokemon) {
@@ -147,8 +155,6 @@ function dialogEvolutionSectionTpl(thisPokemon, evoNames) {
    <section>`;
 }
 
-
-
 function dialogMovesSectionTpl(thisPokemon) {
     return /*html*/`<section >    
     <div class="moves-content">
@@ -175,7 +181,6 @@ function dialogFooterTpl(thisPokemon){
 </footer>
 </div>`;
 }
-
 
 function renderSingelMoveTpl(i, movesNames) {
     return ` <tr id="${i}">

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
- 
+
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Radek Gnych">
@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="style/spinner.css">
     <script defer src="./scripts/template.js"></script>
     <script defer src="./scripts/script.js"></script>
-
     <title>Card-Pokedex</title>
 </head>
 
@@ -24,21 +23,22 @@
     <header class="page-header">
         <nav class="page-nav">
             <div class="logo-and-title">
-                <img src="img/icons8-insignia-3-color/icons8-insignia-3-96.png" alt="Nav-Logo">
-                <h1 class="headline-title">
-                    <span class="part-1">Card</span>
-                    <span class="divider"></span>
-                    <span class="part-2">Pokedex</span>
-                </h1>
+                <img class="img-logo" src="img/icons8-insignia-3-color/icons8-insignia-3-96.png" alt="Nav-Logo">
+                <div class="headline-content">
+                    <h1 class="headline-title">
+                        <span class="part-1">Card</span>
+                        <span class="divider"></span>
+                        <span class="part-2">Pokedex</span>
+                    </h1>
+                    <search>
+                        <form onsubmit="searchPokemon(); return false">
+                            <input type="search" id="userInput" placeholder="Enter pokémon name "
+                                pattern="[A-Za-z\s\-]{1,18}" maxlength="18" title="enter pokemon name" required>
+                            <button type="button" class="search-button" onclick="searchPokemon()">Search</button>
+                        </form>
+                    </search>
+                </div>
             </div>
-
-            <search>
-                <form onsubmit="searchPokemon(); return false">
-                    <input type="search" id="userInput" placeholder="Enter Pokémon name here"
-                        pattern="[A-Za-z\s\-]{1,18}" maxlength="18" title="enter pokemon name" required>
-                    <button type="button" class="search-button" onclick="searchPokemon()">Search</button>
-                </form>
-            </search>
         </nav>
         <div id="errorBubble" class="overlay">
             <p id="error" class="speech-bubble"></p>
@@ -49,25 +49,18 @@
 
             <section id="spinnerSection" class="spinnerSection">
                 <div id="spinnerCont" class="spinnerCont">
-
                     <div id="loadingSpinner" class="loader"></div>
                     <span id="spinnerText" class="spinnerText"> Loading...</span>
-
                 </div>
             </section>
 
             <div id="thumbnail" class="all-thumbnails"></div>
             <dialog class="pokemon-dialog" id="dialog" onclick="closeDialog()"></dialog>
-
             <div class="load-more-container">
                 <button id="loadMoreButton" type="button" class="load-more-button" onclick="loadMorePk()">Load more
                     Pokémons</button>
             </div>
-
-
         </div>
-
-
     </main>
 
     <footer class="page-footer">
@@ -79,39 +72,6 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -30,10 +30,9 @@ function init() {
     loadPkData();
 }
 
-
 async function loadPkData() {
     loadingSpinner(true);
-    await sleep(1000); //   Time loadindSpinner 
+    await sleep(1000); //   time loadindSpinner 
     BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${currentOffset}`;
     let response = await fetch(BASE_URL, { method: "GET" });
     let data = await response.json();
@@ -56,13 +55,11 @@ async function loadPkDataDetails() {
 
 function loadMorePk() {
     currentOffset += limit;
-    console.log(currentOffset);
     loadPkData();
 }
 
 function showThumbnailPkNamesAndTypes(pokemon) {
     let pkTypeName1 = pokemon.types[0].type.name;
-    console.log(pkTypeName1);
     let pkTypeName2 = "";
     if (pokemon.types.length > 1) {
         pkTypeName2 = pokemon.types[1].type.name;
@@ -73,7 +70,6 @@ function showThumbnailPkNamesAndTypes(pokemon) {
 function showThumbnailBackgroundcolor(pokemon, pkTypeName1, pkTypeName2) {
     let typeName = pokemon.types[0].type.name;
     let bg_Color = typeColors[typeName];
-    console.log(pokemon.id);
     pkThumbnail.innerHTML += renderThumbnailsContentTpl(pokemon, pkTypeName1, pkTypeName2, bg_Color);
     pkTypeName2StyleThumbnail(pokemon);
 }
@@ -119,8 +115,6 @@ async function showCatergoryInDialog(aboutPokemon, pkTypeName1, pkTypeName2, bg_
     currentCategory = await response.json();
     let pkcategory = currentCategory.genera[7].genus
     renderFullDialog(aboutPokemon, pkTypeName1, pkTypeName2, bg_Color, abilities, pkcategory);
-    //  let content = document.getElementById("dialogContent");
-    //  content.innerHTML = dialogAboutSectionTpl(aboutPokemon, abilities, pkcategory);
     loadingSpinner(false);
 }
 
@@ -138,7 +132,6 @@ function showAboutInDialog(thisPokemonId, pkcategory) {
         abilities.ability2 += ", ";
         abilities.ability3 = list[2].ability.name;
     }
-
     let contentAbout = document.getElementById("dialogContent");
     contentAbout.innerHTML = "";
     contentAbout.innerHTML = dialogAboutSectionTpl(thisPokemon, abilities, pkcategory);
@@ -159,7 +152,6 @@ async function showEvolutionInDialog(pokemonId) {
     let evoPokemon = await response.json();
     let chain = evoPokemon.chain;
     let evoNames = [];
-
     extractEvoNames(chain, evoNames);
     function extractEvoNames(chain, evoNames) {
         evoNames.push(chain.species.name);
@@ -175,7 +167,6 @@ async function showEvolutionInDialog(pokemonId) {
     loadingSpinner(false);
 }
 
-
 function showMovesInDialog(thisPokemonId) {
     let thisPokemon = pokemonsCache[thisPokemonId];
     let contentMoves = document.getElementById("dialogContent");
@@ -186,11 +177,10 @@ function showMovesInDialog(thisPokemonId) {
 function renderFullDialog(pokemon, pkTypeName1, pkTypeName2, bg_Color, abilities, pkcategory) {
     pkDialog.innerHTML = dialogHeaderTpl() +
         dialogUpperSectionTpl(pokemon, pkTypeName1, pkTypeName2, bg_Color, pkcategory) +
-        `<div id="dialogContent">` +
+        `<div id="dialogContent" class"dialog-content">` +
         dialogAboutSectionTpl(pokemon, abilities, pkcategory) +
         `</div>` +
         dialogFooterTpl(pokemon);
-
     if (pokemon.types.length === 1) {
         let pkTypeName2Style = document.getElementById("dialogTypeSlot2");
         if (pkTypeName2Style) {
@@ -205,7 +195,6 @@ function renderPokemonMoves(thisPokemon) {
     let mv = document.getElementById("table-moves");
     let movesNames = [];
     for (let i = 0; i < 6; i++) {
-
         if (thisPokemon.moves[i]) {
             let pkMoves = thisPokemon.moves[i].move.name;
             movesNames.push(pkMoves);
@@ -225,7 +214,6 @@ function searchPokemon() {
     } else {
         showErrorSpeechBubble();
     }
-
 }
 
 function showErrorSpeechBubble() {
