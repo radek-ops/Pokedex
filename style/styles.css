@@ -12,18 +12,10 @@
 
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 @font-face {
 
     font-family: "Boldonse", system-ui;
     src: url(./fonts/Boldonse/Boldonse-Regular.ttf);
-<<<<<<< HEAD
-
-=======
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 }
 
 :root {
@@ -45,22 +37,13 @@ html {
     flex: 1;
 }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 .page-header {
 
     position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
-<<<<<<< HEAD
     height: 145px;
-=======
-    height: 116px;
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     background-color: var(--color-black);
     box-shadow: 0px 0px 20px 1px rgb(151, 21, 21);
     box-sizing: border-box;
@@ -71,26 +54,15 @@ html {
 
     max-width: 1440px;
     width: 100%;
-<<<<<<< HEAD
-=======
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     box-sizing: border-box;
     margin-left: 16px;
     margin-right: 16px;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 }
 
 .logo-and-title {
 
     display: flex;
-<<<<<<< HEAD
     align-items: center;
     gap: 20px;
 
@@ -111,16 +83,20 @@ html {
     width: 96px;
     height: 96px;
     margin-bottom: 10px;
-=======
-    gap: 32px
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 }
 
 form {
 
-<<<<<<< HEAD
     padding-top: 30px;
 }
+
+.foundlist-Button {
+    font-size: 30px;
+    cursor: pointer;
+     background-color: #FF3D00;
+}
+
+
 
 input {
     box-sizing: border-box;
@@ -143,28 +119,6 @@ input {
     border-width: 5px;
     font-size: 16px;
     font-family: "Ubuntu", sans-serif;
-=======
-    padding-top: 60px;
-}
-
-input {
-
-    width: 250px;
-    height: 30px;
-    font-family: "Ubuntu", sans-serif;
-    font-size: 16px;
-    margin-right: 16px;
-}
-
-.search-button {
-    width: 80px;
-    height: 40px;
-    margin-top: 64px;
-    margin-bottom: 64px;
-    white-space: nowrap;
-    border-radius: 16px;
-    border-width: 5px;
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 
 }
 
@@ -193,10 +147,6 @@ input {
     animation: errormove 1s 1 forwards
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 @keyframes errormove {
 
     from {
@@ -217,14 +167,11 @@ input {
 
 }
 
-<<<<<<< HEAD
 .modal-open {
     overflow: hidden;
     padding-right: 15px;
 }
 
-=======
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 .page-main {
 
     width: 100%;
@@ -267,11 +214,7 @@ input {
     width: 180px;
     height: 180px;
     display: flex;
-<<<<<<< HEAD
     flex-direction: column;
-=======
-   flex-direction: column;
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     object-fit: cover;
     border-radius: 16px;
     border-style: solid;
@@ -298,12 +241,7 @@ input {
 
 }
 
-<<<<<<< HEAD
 .thumbnail-typeNames-img {
-=======
-
-.thumbnail-typeNames-img{
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 
     display: flex;
     align-items: center;
@@ -342,10 +280,6 @@ input {
 
 .thumbnail-images {
 
-<<<<<<< HEAD
-=======
-    
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     width: 64px;
     height: 64px;
     margin-right: 8px;
@@ -359,13 +293,8 @@ input {
 
 }
 
-<<<<<<< HEAD
 .pkType-name1 {
 
-=======
-
-.pkType-name1 {
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     width: 80px;
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 25px;
@@ -378,10 +307,6 @@ input {
 }
 
 .pkType-name2 {
-<<<<<<< HEAD
-
-=======
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     width: 80px;
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 25px;
@@ -393,23 +318,12 @@ input {
     font-weight: 400;
 }
 
-<<<<<<< HEAD
 .unset-pkTypeName2Style-bg {
 
     background-color: unset !important;
 
 }
 
-=======
-
-.unset-pkTypeName2Style-bg {
-  background-color: unset !important;
-
-}
-
-
-
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 .load-more-container {
 
     display: flex;
@@ -419,10 +333,6 @@ input {
 }
 
 .load-more-button {
-<<<<<<< HEAD
-
-=======
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     width: 200px;
     height: 40px;
     margin-top: 64px;
@@ -430,35 +340,20 @@ input {
     white-space: nowrap;
     border-radius: 16px;
     border-width: 5px;
-<<<<<<< HEAD
     cursor: pointer;
 
 }
 
-=======
-
-}
-
-
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 .page-footer {
 
     width: 100%;
     display: flex;
     justify-content: center;
-<<<<<<< HEAD
     height: 145px;
-=======
-    height: 116px;
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
     background-color: var(--color-black);
     box-shadow: 0px 5px -20px 5px rgb(151, 21, 21);
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 .footer-content {
 
     max-width: 1440px;
@@ -476,7 +371,6 @@ input {
     font-family: "Ubuntu", sans-serif;
     font-size: 16px;
     color: var(--color-white);
-<<<<<<< HEAD
 }
 
 @media(max-width:999px) {
@@ -550,9 +444,9 @@ input {
 
     }
 
-    input{
+    input {
 
-        margin-right:8px ;
+        margin-right: 8px;
     }
 
     .img-logo {
@@ -579,6 +473,4 @@ input {
         height: 20px;
     }
 
-=======
->>>>>>> 9cec200f95910b3a79e2531a3bbb278f5c65c973
 }

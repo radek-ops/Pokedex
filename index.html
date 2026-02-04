@@ -31,9 +31,11 @@
                         <span class="part-2">Pokedex</span>
                     </h1>
                     <search>
-                        <form onsubmit="searchPokemon(); return false">
-                            <input type="search" id="userInput" placeholder="Enter pokémon name "
-                                pattern="[A-Za-z\s\-]{1,18}" maxlength="18" title="enter pokemon name" required>
+                        <form onsubmit="searchPkByThreeChar() ; return false";>
+                            <input type="search" list="wantedPkNames" oninput="searchPkByThreeChar()" id="userInput"
+                                placeholder="Enter pokémon name " pattern="[A-Za-z\s\-]{1,18}" maxlength="18"
+                                minlength="3" title="enter pokemon name"required>
+                            <datalist id="wantedPkNames" class="wantedPk"></datalist>
                             <button type="button" class="search-button" onclick="searchPokemon()">Search</button>
                         </form>
                     </search>
@@ -72,6 +74,3 @@
 </body>
 
 </html>
-
-
-
