@@ -5,7 +5,7 @@
     flex: 1;
     min-height: 100vh;
     background-size: cover;
-    background-image: url("/img/honyComb2.png");
+    background-image: url("../img/honyComb2.png");
     object-fit: cover;
     background-attachment: fixed;
     display: flex;
