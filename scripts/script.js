@@ -227,7 +227,7 @@ function searchPokemon() {
         showErrorSpeechBubble();
         document.getElementById("userInput").value = "";
     }
-
+     document.getElementById("userInput").value = "";
 }
 function searchPkByThreeChar() {
     let searchPkName = document.getElementById("userInput");

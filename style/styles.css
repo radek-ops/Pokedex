@@ -373,6 +373,18 @@ input {
     color: var(--color-white);
 }
 
+.impressum-link {
+    color: var(--color-white);
+    text-decoration: none;
+    cursor: pointer;
+    font-family: "Ubuntu", sans-serif;
+    font-size: 16px;
+}
+
+.impressum-link:hover {
+    text-decoration: underline;
+}
+
 @media(max-width:999px) {
     .img-logo {
 
